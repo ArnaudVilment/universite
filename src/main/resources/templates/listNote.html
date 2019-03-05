@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Liste des notes</title>
+<link rel="stylesheet" th:href="@{/css/listNote.css}"/>
+</head>
+<body>
+	<h1>Liste des notes</h1>
+	
+	<div id="conteneur" th:each="not : ${ listNote }">
+		<div class="blockNote">
+			<a th:href="@{'/infoNote/' + ${not.id}}">Plus d'info</a>
+		</div>
+	</div>
+	
+</body>
+</html>

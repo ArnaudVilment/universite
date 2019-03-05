@@ -9,6 +9,8 @@ public interface IEnseignantService {
 	public List<Enseignant> selectAll();
 	public Enseignant selectOn(int id);
 	public void deleteOne(int id);
-	public void newProfesseur(Enseignant professeur);
-	public void editProfesseur(Enseignant professeur);
+	public void newEnseignant(Enseignant ens);
+	public void editEnseignant(Enseignant ens);
+	public List<Enseignant> findAllByOrderByNom();
+	public List<Enseignant> findAllByOrderByNomDesc();
 }
