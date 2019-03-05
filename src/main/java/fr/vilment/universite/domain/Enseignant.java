@@ -12,15 +12,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "T_ETUDIANT")
-public class Etudiant {
+@Table(name = "T_ENSEIGNANT")
+public class Enseignant {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private int id;
-	@Column(name = "NUMERO_ETUDIANT")
-	private int numero_etudiant;
+	@Column(name = "NUMERO_ENSEIGNANT")
+	private int numero_enseignant;
 	@Column(name = "NOM")
 	private String nom;
 	@Column(name = "PRENOM")
@@ -29,9 +29,12 @@ public class Etudiant {
 	private Date date_naissance;
 	@Column(name = "SEXE")
 	private String sexe;
-	
-	@OneToMany(mappedBy="etudiant")
-	private List<Note> listNote;
+	@Column(name = "GRADE")
+	private String grade;
+	@Column(name = "DATE_EMBAUCHE")
+	private Date date_embauche;
+	@OneToMany(mappedBy="enseignant")
+	private List<Matiere> listMatiere;
 	
 	public int getId() {
 		return id;
@@ -39,11 +42,11 @@ public class Etudiant {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getNumero_etudiant() {
-		return numero_etudiant;
+	public int getNumero_enseignant() {
+		return numero_enseignant;
 	}
-	public void setNumero_etudiant(int numero_etudiant) {
-		this.numero_etudiant = numero_etudiant;
+	public void setNumero_enseignant(int numero_enseignant) {
+		this.numero_enseignant = numero_enseignant;
 	}
 	public String getNom() {
 		return nom;
@@ -69,10 +72,22 @@ public class Etudiant {
 	public void setSexe(String sexe) {
 		this.sexe = sexe;
 	}
-	public List<Note> getListNote() {
-		return listNote;
+	public String getGrade() {
+		return grade;
 	}
-	public void setListNote(List<Note> listNote) {
-		this.listNote = listNote;
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
+	public Date getDate_embauche() {
+		return date_embauche;
+	}
+	public void setDate_embauche(Date date_embauche) {
+		this.date_embauche = date_embauche;
+	}
+	public List<Matiere> getListMatiere() {
+		return listMatiere;
+	}
+	public void setListMatiere(List<Matiere> listMatiere) {
+		this.listMatiere = listMatiere;
+	}	
 }

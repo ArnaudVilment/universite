@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Liste des enseignants</title>
+<link rel="stylesheet" th:href="@{/css/listEnseignant.css}"/>
+</head>
+<body>
+	<h1>Liste des enseignants</h1>
+	
+	<div id="conteneur" th:each="ens : ${ listEnseignant }">
+		<div class="blockEnseignant">
+			<a th:href="@{'/infoEnseignant/' + ${ens.id}}">Plus d'info</a>
+			<div th:text="${ ens.numero_enseignant }"></div>
+			<div th:text="${ ens.nom }"></div>		
+			<div th:text="${ ens.prenom }"></div>		
+			<div th:text="${ ens.date_naissance }"></div>		
+			<div th:text="${ ens.sexe }"></div>		
+			<div th:text="${ ens.grade }"></div>		
+			<div th:text="${ ens.date_embauche }"></div>	
+		</div>
+		<div id="blockMatiere" th:each="mat : ${ ens.listMatiere }">	
+			<div th:text="${ mat.numero_matiere }"></div>	
+			<div th:text="${ mat.nom }"></div>	
+			<div th:text="${ mat.coef }"></div>	
+		</div>
+	</div>
+	
+</body>
+</html>
