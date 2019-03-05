@@ -9,16 +9,16 @@
 	<h1>Liste des étudiants</h1>
 	
 	<div id="conteneur" th:each="etu : ${ listEtudiant }">
-		<div class="blockPhoto">
+		<div class="blockEtudiant">
 			<a th:href="@{'/infoEtudiant/' + ${etu.id}}">Plus d'info</a>
 			<div th:text="${ etu.numero_etudiant }"></div>
 			<div th:text="${ etu.nom }"></div>		
 			<div th:text="${ etu.prenom }"></div>		
 			<div th:text="${ etu.date_naissance }"></div>		
 			<div th:text="${ etu.sexe }"></div>	
-				<div id="conteneur2"  th:each="not : ${ etu.listNote }">	
-					<div th:text="${ not.note }"></div>	
-				</div>
+		</div>
+		<div id="blockNote"  th:each="not : ${ etu.listNote }">	
+			<div th:text="${ not.note }"></div>	
 		</div>
 	</div>
 	

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "T_ETUDIANT")
 public class Etudiant {
@@ -26,6 +28,7 @@ public class Etudiant {
 	@Column(name = "PRENOM")
 	private String prenom;
 	@Column(name = "DATE_NAISSANCE")
+	@DateTimeFormat(pattern="yyyy-mm-dd")
 	private Date date_naissance;
 	@Column(name = "SEXE")
 	private String sexe;

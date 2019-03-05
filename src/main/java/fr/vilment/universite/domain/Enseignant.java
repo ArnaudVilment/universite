@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "T_ENSEIGNANT")
 public class Enseignant {
@@ -26,12 +28,14 @@ public class Enseignant {
 	@Column(name = "PRENOM")
 	private String prenom;
 	@Column(name = "DATE_NAISSANCE")
+	@DateTimeFormat(pattern="yyyy-mm-dd")
 	private Date date_naissance;
 	@Column(name = "SEXE")
-	private String sexe;
+	private Character sexe;
 	@Column(name = "GRADE")
 	private String grade;
 	@Column(name = "DATE_EMBAUCHE")
+	@DateTimeFormat(pattern="yyyy-mm-dd")
 	private Date date_embauche;
 	@OneToMany(mappedBy="enseignant")
 	private List<Matiere> listMatiere;
@@ -66,10 +70,10 @@ public class Enseignant {
 	public void setDate_naissance(Date date_naissance) {
 		this.date_naissance = date_naissance;
 	}
-	public String getSexe() {
+	public Character getSexe() {
 		return sexe;
 	}
-	public void setSexe(String sexe) {
+	public void setSexe(Character sexe) {
 		this.sexe = sexe;
 	}
 	public String getGrade() {

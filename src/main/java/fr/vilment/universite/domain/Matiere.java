@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "T_MATIERE")
 public class Matiere {
@@ -23,6 +25,12 @@ public class Matiere {
 	private String nom;
 	@Column(name = "COEF")
 	private int coef;
+	@Column(name = "DATE_DEBUT")
+	@DateTimeFormat(pattern="yyyy-mm-dd")
+	private int date_debut;
+	@Column(name = "DATE_FIN")
+	@DateTimeFormat(pattern="yyyy-mm-dd")
+	private int date_fin;
 	@Column(name = "ID_ENSEIGNANT")
 	private int id_enseignant;
 	
@@ -59,5 +67,23 @@ public class Matiere {
 	}
 	public void setId_enseignant(int id_enseignant) {
 		this.id_enseignant = id_enseignant;
+	}
+	public int getDate_debut() {
+		return date_debut;
+	}
+	public void setDate_debut(int date_debut) {
+		this.date_debut = date_debut;
+	}
+	public int getDate_fin() {
+		return date_fin;
+	}
+	public void setDate_fin(int date_fin) {
+		this.date_fin = date_fin;
+	}
+	public Enseignant getEnseignant() {
+		return enseignant;
+	}
+	public void setEnseignant(Enseignant enseignant) {
+		this.enseignant = enseignant;
 	}
 }
