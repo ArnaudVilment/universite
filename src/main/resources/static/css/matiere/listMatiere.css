@@ -11,14 +11,6 @@ h1{
 	margin-left: 23%;
 	text-align: center;
 }
-.blockEnseignant{
-	border-radius : 10px;
-	padding: 5px 5px 5px 5px;
-	border:1px white solid;	
-	margin: auto;
-	float: left;
-	background-color: rgba(192,192,192,0.7);
-}
 .blockMatiere{
 	border-radius : 10px;
 	padding: 5px 5px 5px 5px;

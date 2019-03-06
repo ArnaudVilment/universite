@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.vilment.universite.controller.IMatiereController;
 import fr.vilment.universite.domain.Matiere;
+import fr.vilment.universite.service.impl.EnseignantServiceImpl;
 import fr.vilment.universite.service.impl.MatiereServiceImpl;
 
 @Controller
@@ -21,6 +22,8 @@ public class MatiereControllerImpl implements IMatiereController {
 	
 	@Autowired
 	private MatiereServiceImpl mS;
+	@Autowired
+	private EnseignantServiceImpl eS;
 		
 	@Override
 	@GetMapping(path="/listMatiere")
@@ -28,15 +31,15 @@ public class MatiereControllerImpl implements IMatiereController {
 		
 		model.addAttribute("listMatiere", mS.selectAll());
 		log.info("Taille de la liste des Matieres : " + mS.selectAll().size());
-		return "/listMatiere";
+		return "matiere/listMatiere";
 	}
 	
 	@Override
 	@GetMapping(value = "/infoMatiere/{id}")
-	public String getMatiere(Model model, int id) {
+	public String getMatiere(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
 		model.addAttribute("mat", mS.selectOn(id));
-		return "infoMatiere";
+		return "matiere/infoMatiere";
 	}
 
 	@Override
@@ -53,7 +56,8 @@ public class MatiereControllerImpl implements IMatiereController {
 		// TODO Auto-generated method stub
 		Matiere mat = new Matiere();
 		model.addAttribute("mat", mat);
-		return "newMatiere";
+		model.addAttribute("listEnseignant", eS.selectAll());
+		return "matiere/newMatiere";
 	}
 
 	@Override
@@ -69,7 +73,8 @@ public class MatiereControllerImpl implements IMatiereController {
 	public String editMatiere(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
 		model.addAttribute("mat", mS.selectOn(id));
-		return "newMatiere";
+		model.addAttribute("listEnseignant", eS.selectAll());
+		return "matiere/newMatiere";
 	}
 	
 	@Override
@@ -77,7 +82,7 @@ public class MatiereControllerImpl implements IMatiereController {
 	public String getListMatiereTrierAsc(Model model) {
 		
 		model.addAttribute("listMatiere", mS.findAllByOrderByNom());
-		return "listMatiere";
+		return "matiere/listMatiere";
 	}
 	
 	@Override
@@ -85,6 +90,6 @@ public class MatiereControllerImpl implements IMatiereController {
 	public String getListMatiereTrierDesc(Model model) {
 		
 		model.addAttribute("listMatiere", mS.findAllByOrderByNomDesc());
-		return "listMatiere";
+		return "matiere/listMatiere";
 	}
 }

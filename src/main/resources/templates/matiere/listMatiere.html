@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>Liste des matieres</title>
-<link rel="stylesheet" th:href="@{/css/listMatiere.css}"/>
+<link rel="stylesheet" th:href="@{/css/matiere/listMatiere.css}"/>
 </head>
 <body>
 	<h1>Liste des matieres</h1>
@@ -11,12 +11,13 @@
 	<div id="conteneur" th:each="mat : ${ listMatiere }">
 		<div class="blockMatiere">
 			<a th:href="@{'/infoMatiere/' + ${mat.id}}">Plus d'info</a>
-			<div th:text="${ mat.numero_Matiere }"></div>
+			<div th:text="${ mat.numero_matiere }"></div>
 			<div th:text="${ mat.nom }"></div>		
 			<div th:text="${ mat.coef }"></div>		
 			<div th:text="${ mat.date_debut }"></div>		
 			<div th:text="${ mat.date_fin }"></div>	
 		</div>
+		
 	</div>
 	
 </body>

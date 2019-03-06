@@ -8,7 +8,7 @@ import fr.vilment.universite.domain.Note;
 public interface INoteController {
 
 	public String selectAllNote(Model model);
-	public String getNote(Model model, int id);
+	public String getNote(Model model, @PathVariable int id);
 	public String delNote(Model model, @PathVariable int id);
 	public String newNote(Model model);
 	public String newNote(Model model, Note pz);

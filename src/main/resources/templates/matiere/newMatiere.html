@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Ajout / Modification d'une matière</title>
+<link rel="stylesheet" th:href="@{/css/matiere/newMatiere.css}"/>
+</head>
+<body>
+	<h1>Ajout / Modification d'une matière</h1>
+	
+	<form th:action="@{/newMatiere}" method="POST" class="color" th:object="${mat}">
+	    <fieldset>
+	        <legend>Matière</legend>
+	        
+	        <input type="hidden"  id="id" name="id" class="dim_block2" th:field="*{id}"/>
+	        <label>N° Matière :</label>
+	        <br/>
+	        <input type="text" id="numero_matiere" name="numero_matiere" class="dim_block2" th:field="*{numero_matiere}"/>
+	        <br/>	        
+	        <br/>
+	        <label>Nom :</label>
+	        <br/>
+	        <input type="text" id="nom" name="nom" class="dim_block2"  th:field="*{nom}"/>
+	        <br/>
+	        <br/>
+	        <label>Coef :</label>
+	        <br/>
+	        <input type="text" id="coef" name="coef" class="dim_block2"  th:field="*{coef}"/>
+	        <br/>
+	        <br/>
+	        <label>Date début :</label>
+	        <br/>
+	        <input type="date" id="date_debut" name="date_debut" class="dim_block2" th:field="*{date_debut}"/>
+	        <br/>
+	        <br/>	
+	        <label>Date fin :</label>
+	        <br/>
+	        <input type="date" id="date_fin" name="date_fin" class="dim_block2" th:field="*{date_fin}"/>
+	        <br/>
+	        <br/>	
+	        <label>Enseignant :</label> 
+	        <br/>
+	        <select th:field="*{id_enseignant}">
+                   <option th:each="ens : ${listEnseignant}" th:value="${ens.id}" th:utext="${ens.nom} + ' ' + ${ens.prenom}"/>
+            </select>  
+	    </fieldset>
+    	<br/>
+	    <input type="submit" value="Envoyer" class="dim_block4" id="colorBlock"/>
+	    <input type="reset" value="Annuler" class="dim_block4" id="colorBlock"/>
+	    
+	</form>
+	<div id="#lienRetour">
+		<a id="lienRetour" th:href="@{../listMatiere}"><img class="icon2" th:src="@{/images/iconRet.jpg}"/></a>	
+	</div>
+</body>
+</html>

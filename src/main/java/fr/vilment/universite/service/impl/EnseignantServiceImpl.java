@@ -18,13 +18,17 @@ public class EnseignantServiceImpl implements IEnseignantService {
 	@Override
 	public List<Enseignant> selectAll() {
 		// TODO Auto-generated method stub
-		return eR.findAll();
+		List<Enseignant> lE = eR.findAll();
+		checkPhoto(lE);
+		return lE;
 	}
 
 	@Override
 	public Enseignant selectOn(int id) {
 		// TODO Auto-generated method stub
-		return eR.getOne(id);
+		Enseignant ens = eR.getOne(id);
+		checkPhoto(ens);
+		return ens;
 	}
 
 	@Override
@@ -34,9 +38,9 @@ public class EnseignantServiceImpl implements IEnseignantService {
 	}
 
 	@Override
-	public void newEnseignant(Enseignant ens) {
+	public Enseignant newEnseignant(Enseignant ens) {
 		// TODO Auto-generated method stub
-		eR.save(ens);
+		return eR.save(ens);
 	}
 
 	@Override
@@ -48,12 +52,38 @@ public class EnseignantServiceImpl implements IEnseignantService {
 	@Override
 	public List<Enseignant> findAllByOrderByNom() {
 		// TODO Auto-generated method stub
-		return eR.findAllByOrderByNom();
+		List<Enseignant> lE = eR.findAllByOrderByNom();
+		checkPhoto(lE);
+		return lE;
 	}
 
 	@Override
 	public List<Enseignant> findAllByOrderByNomDesc() {
 		// TODO Auto-generated method stub
-		return eR.findAllByOrderByNomDesc();
+		List<Enseignant> lE = eR.findAllByOrderByNomDesc();
+		checkPhoto(lE);
+		return lE;
+	}
+
+	@Override
+	public List<Enseignant> checkPhoto(List<Enseignant> lE) {
+		// Vérifier l'image pour chaque enseignant, si il ne possède pas d'image, on lui en donne une par defaut
+		// http://bibliotheque.sciencespo-lyon.fr/wp-content/uploads/2018/10/des-enseignants-de-lecture_318-28655.jpg
+		for(Enseignant ens : lE) {
+			if(ens.getPhoto() == null || ens.getPhoto().equals("")) {
+				ens.setPhoto("http://bibliotheque.sciencespo-lyon.fr/wp-content/uploads/2018/10/des-enseignants-de-lecture_318-28655.jpg");
+			}
+			
+		}
+		return lE;
+	}
+
+	@Override
+	public Enseignant checkPhoto(Enseignant ens) {
+		// TODO Auto-generated method stub
+		if(ens.getPhoto() == null || ens.getPhoto().equals("")) {
+			ens.setPhoto("http://bibliotheque.sciencespo-lyon.fr/wp-content/uploads/2018/10/des-enseignants-de-lecture_318-28655.jpg");
+		}
+		return ens;
 	}
 }

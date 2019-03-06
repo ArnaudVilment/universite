@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -27,16 +28,15 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	public String selectAllEnseignant(Model model) {
 		
 		model.addAttribute("listEnseignant", eS.selectAll());
-		log.info("Taille de la liste des enseignants : " + eS.selectAll().size());
-		return "/listEnseignant";
+		return "enseignant/listEnseignant";
 	}
 	
 	@Override
 	@GetMapping(value = "/infoEnseignant/{id}")
-	public String getEnseignant(Model model, int id) {
+	public String getEnseignant(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
 		model.addAttribute("ens", eS.selectOn(id));
-		return "infoEnseignant";
+		return "enseignant/infoEnseignant";
 	}
 
 	@Override
@@ -53,15 +53,21 @@ public class EnseignantControllerImpl implements IEnseignantController {
 		// TODO Auto-generated method stub
 		Enseignant ens = new Enseignant();
 		model.addAttribute("ens", ens);
-		return "newEnseignant";
+		return "enseignant/newEnseignant";
 	}
 
 	@Override
-	@PostMapping(value = "/newEnseignant")
+	@PostMapping(value = "/saveEnseignant")
 	public String newEnseignant(Model model, Enseignant ens) {
 		// TODO Auto-generated method stub
-		eS.newEnseignant(ens);
-		return "redirect:/listEnseignant";
+		log.info("Nom enseignant : {}" , ens.getNom());
+		log.info("Prenom enseignant : {}" , ens.getPrenom());
+		Enseignant e = eS.newEnseignant(ens);
+		if(e == null) {
+			return "redirect:/newEnseignant";
+		} else {
+			return "redirect:/listEnseignant";
+		}
 	}
 
 	@Override
@@ -69,7 +75,8 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	public String editEnseignant(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
 		model.addAttribute("ens", eS.selectOn(id));
-		return "newEnseignant";
+		model.addAttribute("listMatiere", eS.selectOn(id).getListMatiere());
+		return "enseignant/newEnseignant";
 	}
 	
 	@Override
@@ -77,7 +84,7 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	public String getListEnseignantTrierAsc(Model model) {
 		
 		model.addAttribute("listEnseignant", eS.findAllByOrderByNom());
-		return "listEnseignant";
+		return "enseignant/listEnseignant";
 	}
 	
 	@Override
@@ -85,6 +92,6 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	public String getListEnseignantTrierDesc(Model model) {
 		
 		model.addAttribute("listEnseignant", eS.findAllByOrderByNomDesc());
-		return "listEnseignant";
+		return "enseignant/listEnseignant";
 	}
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Information de la matière</title>
+<link rel="stylesheet" th:href="@{/css/matiere/infoMatiere.css}"/>
+</head>
+<body>
+	<h1>Information de la matière</h1>
+	
+	<div id="conteneur">		
+		<div id="intitule">
+				<p th:text="${ mat.numero_matiere }"></p>
+				<p th:text="${ mat.nom }"></p>
+				<p th:text="${ mat.coef }"></p>		
+				<p th:text="${ mat.date_debut }"></p>		
+				<p th:text="${ mat.date_fin }"></p>		
+		</div>	
+		<div id="modif">
+			<ul>
+				<li><a th:href="@{'../editMatiere/' + ${ mat.id }}"><img class="icon" th:src="@{/images/icone_mod2.jpg}"/></a></li>
+				<li><a th:href="@{'../delMatiere/' + ${ mat.id }}"><img class="icon" th:src="@{/images/icone_sup.jpg}"/></a></li>
+			</ul>				
+		</div>	
+			
+						
+	</div>	
+</body>
+</html>

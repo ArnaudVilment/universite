@@ -8,7 +8,7 @@ import fr.vilment.universite.domain.Etudiant;
 public interface IEtudiantController {
 
 	public String selectAllEtudiant(Model model);
-	public String getEtudiant(Model model, int id);
+	public String getEtudiant(Model model, @PathVariable int id);
 	public String delEtudiant(Model model, @PathVariable int id);
 	public String newEtudiant(Model model);
 	public String newEtudiant(Model model, Etudiant pz);

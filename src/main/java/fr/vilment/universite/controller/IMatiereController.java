@@ -8,7 +8,7 @@ import fr.vilment.universite.domain.Matiere;
 public interface IMatiereController {
 
 	public String selectAllMatiere(Model model);
-	public String getMatiere(Model model, int id);
+	public String getMatiere(Model model, @PathVariable int id);
 	public String delMatiere(Model model, @PathVariable int id);
 	public String newMatiere(Model model);
 	public String newMatiere(Model model, Matiere pz);

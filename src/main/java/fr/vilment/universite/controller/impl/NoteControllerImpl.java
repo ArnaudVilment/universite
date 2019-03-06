@@ -31,7 +31,7 @@ public class NoteControllerImpl implements INoteController {
 	
 	@Override
 	@GetMapping(value = "/infoNote/{id}")
-	public String getNote(Model model, int id) {
+	public String getNote(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
 		model.addAttribute("not", nS.selectOn(id));
 		return "infoNote";

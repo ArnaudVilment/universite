@@ -27,15 +27,15 @@ public class EtudiantControllerImpl implements IEtudiantController {
 	public String selectAllEtudiant(Model model) {
 		
 		model.addAttribute("listEtudiant", eS.selectAll());
-		return "/listEtudiant";
+		return "etudiant/listEtudiant";
 	}
 
 	@Override
 	@GetMapping(value = "/infoEtudiant/{id}")
-	public String getEtudiant(Model model, int id) {
+	public String getEtudiant(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
-		model.addAttribute("ens", eS.selectOn(id));
-		return "infoEtudiant";
+		model.addAttribute("etu", eS.selectOn(id));
+		return "etudiant/infoEtudiant";
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class EtudiantControllerImpl implements IEtudiantController {
 		// TODO Auto-generated method stub
 		Etudiant etu = new Etudiant();
 		model.addAttribute("etu", etu);
-		return "newEtudiant";
+		return "etudiant/newEtudiant";
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class EtudiantControllerImpl implements IEtudiantController {
 	public String editEtudiant(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
 		model.addAttribute("etu", eS.selectOn(id));
-		return "newEtudiant";
+		return "etudiant/newEtudiant";
 	}
 	
 	@Override
@@ -76,7 +76,7 @@ public class EtudiantControllerImpl implements IEtudiantController {
 	public String getListEtudiantTrierAsc(Model model) {
 		
 		model.addAttribute("listEtudiant", eS.findAllByOrderByNom());
-		return "listEtudiant";
+		return "etudiant/listEtudiant";
 	}
 	
 	@Override
@@ -84,6 +84,6 @@ public class EtudiantControllerImpl implements IEtudiantController {
 	public String getListEtudiantTrierDesc(Model model) {
 		
 		model.addAttribute("listEtudiant", eS.findAllByOrderByNomDesc());
-		return "listEtudiant";
+		return "etudiant/listEtudiant";
 	}
 }

@@ -28,7 +28,7 @@ public class Etudiant {
 	@Column(name = "PRENOM")
 	private String prenom;
 	@Column(name = "DATE_NAISSANCE")
-	@DateTimeFormat(pattern="yyyy-mm-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date date_naissance;
 	@Column(name = "SEXE")
 	private String sexe;

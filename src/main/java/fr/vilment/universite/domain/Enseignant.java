@@ -28,15 +28,18 @@ public class Enseignant {
 	@Column(name = "PRENOM")
 	private String prenom;
 	@Column(name = "DATE_NAISSANCE")
-	@DateTimeFormat(pattern="yyyy-mm-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date date_naissance;
 	@Column(name = "SEXE")
 	private Character sexe;
 	@Column(name = "GRADE")
 	private String grade;
 	@Column(name = "DATE_EMBAUCHE")
-	@DateTimeFormat(pattern="yyyy-mm-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date date_embauche;
+	@Column(name = "PHOTO")
+	private String photo;
+	
 	@OneToMany(mappedBy="enseignant")
 	private List<Matiere> listMatiere;
 	
@@ -87,6 +90,12 @@ public class Enseignant {
 	}
 	public void setDate_embauche(Date date_embauche) {
 		this.date_embauche = date_embauche;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	public List<Matiere> getListMatiere() {
 		return listMatiere;
