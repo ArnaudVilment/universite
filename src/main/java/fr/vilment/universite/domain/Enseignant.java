@@ -31,7 +31,7 @@ public class Enseignant {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date date_naissance;
 	@Column(name = "SEXE")
-	private Character sexe;
+	private String sexe;
 	@Column(name = "GRADE")
 	private String grade;
 	@Column(name = "DATE_EMBAUCHE")
@@ -73,10 +73,10 @@ public class Enseignant {
 	public void setDate_naissance(Date date_naissance) {
 		this.date_naissance = date_naissance;
 	}
-	public Character getSexe() {
+	public String getSexe() {
 		return sexe;
 	}
-	public void setSexe(Character sexe) {
+	public void setSexe(String sexe) {
 		this.sexe = sexe;
 	}
 	public String getGrade() {

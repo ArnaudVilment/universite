@@ -2,6 +2,8 @@ package fr.vilment.universite.service;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import fr.vilment.universite.domain.Enseignant;
 
 public interface IEnseignantService {
@@ -16,4 +18,6 @@ public interface IEnseignantService {
 	
 	public List<Enseignant> checkPhoto(List<Enseignant> lE);
 	public Enseignant checkPhoto(Enseignant lE);
+	
+	public List<Enseignant> findEnseignantByNom(String nom);
 }

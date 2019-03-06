@@ -7,37 +7,28 @@ h1{
 	border-radius : 10px;
 }
 #conteneur{
-	width: 60%;
-	margin-left: 23%;
+	width: 65%;
+	margin: auto;
 	text-align: center;
-	border: 1px black solid;
+    
 }
-.blockEnseignant{
-	border-radius : 10px;
-	padding: 5px 5px 5px 5px;
-	border:1px white solid;	
-	margin: auto;
-	float: left;
-	background-color: rgba(192,192,192,0.7);
+
+p {
+	margin-top: -2px;
 }
-.blockMatiere{
-	border-radius : 10px;
-	padding: 5px 5px 5px 5px;
-	border:1px white solid;	
-	margin: auto;
-	float: left;
-	background-color: rgba(192,192,192,0.7);
-}
+
 .blockPhoto {
 	border-radius : 10px;
 	padding: 5px 5px 5px 5px;
 	border:1px white solid;	
 	margin: auto;
 	float: left;
+	height: 340px;
+	width: 270px;
 	background-color: rgba(192,192,192,0.7);
 }
 img {
-	height: 230px
+	height: 220px
 }
 
 .icon {

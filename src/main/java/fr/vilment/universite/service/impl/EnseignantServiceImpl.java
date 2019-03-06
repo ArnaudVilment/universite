@@ -86,4 +86,10 @@ public class EnseignantServiceImpl implements IEnseignantService {
 		}
 		return ens;
 	}
+
+	@Override
+	public List<Enseignant> findEnseignantByNom(String nom) {
+		// TODO Auto-generated method stub
+		return eR.findEnseignantByNom(nom);
+	}
 }

@@ -1,5 +1,7 @@
 package fr.vilment.universite.controller.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +94,14 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	public String getListEnseignantTrierDesc(Model model) {
 		
 		model.addAttribute("listEnseignant", eS.findAllByOrderByNomDesc());
+		return "enseignant/listEnseignant";
+	}
+
+	@Override
+	@PostMapping(value = "/cherchEnseignant")
+	public String findEnseignantByNom(Model model, String nom) {
+		// TODO Auto-generated method stub
+		model.addAttribute("listEnseignant", eS.findEnseignantByNom(nom));
 		return "enseignant/listEnseignant";
 	}
 }
