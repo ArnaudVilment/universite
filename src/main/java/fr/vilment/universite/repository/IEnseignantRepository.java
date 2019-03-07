@@ -14,7 +14,7 @@ public interface IEnseignantRepository extends JpaRepository<Enseignant, Integer
 
 	public List<Enseignant> findAllByOrderByNom();
 	public List<Enseignant> findAllByOrderByNomDesc();
-	@Query(value="select * from t_enseignant where nom like %:nom%", nativeQuery=true)
+	@Query(value="select * from t_enseignant where nom like :nom%", nativeQuery=true)
 	public List<Enseignant> findEnseignantByNom(@Param("nom") String nom);
 	
 }

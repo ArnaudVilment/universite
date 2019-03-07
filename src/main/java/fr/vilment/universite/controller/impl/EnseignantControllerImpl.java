@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.vilment.universite.controller.IEnseignantController;
 import fr.vilment.universite.domain.Enseignant;
 import fr.vilment.universite.service.impl.EnseignantServiceImpl;
+import fr.vilment.universite.service.impl.MatiereServiceImpl;
 
 @Controller
 public class EnseignantControllerImpl implements IEnseignantController {
@@ -24,6 +24,8 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	
 	@Autowired
 	private EnseignantServiceImpl eS;
+	@Autowired
+	private MatiereServiceImpl mS;
 	
 	@Override
 	@GetMapping(path="/listEnseignant")
@@ -55,6 +57,7 @@ public class EnseignantControllerImpl implements IEnseignantController {
 		// TODO Auto-generated method stub
 		Enseignant ens = new Enseignant();
 		model.addAttribute("ens", ens);
+		model.addAttribute("listMatiere", mS.selectAll());
 		return "enseignant/newEnseignant";
 	}
 
@@ -101,7 +104,16 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	@PostMapping(value = "/cherchEnseignant")
 	public String findEnseignantByNom(Model model, String nom) {
 		// TODO Auto-generated method stub
-		model.addAttribute("listEnseignant", eS.findEnseignantByNom(nom));
-		return "enseignant/listEnseignant";
+		List<Enseignant> lE = eS.findEnseignantByNom(nom);
+		
+		if(lE.size() == 1) {
+			Enseignant ens = lE.get(0);
+			model.addAttribute("ens", ens);
+			return "enseignant/infoEnseignant";
+		} else {
+			model.addAttribute("listEnseignant", lE);
+			return "enseignant/listEnseignant";
+		}
+		
 	}
 }

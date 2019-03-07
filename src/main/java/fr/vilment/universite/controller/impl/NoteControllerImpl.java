@@ -3,6 +3,7 @@ package fr.vilment.universite.controller.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import fr.vilment.universite.controller.INoteController;
 import fr.vilment.universite.domain.Note;
 import fr.vilment.universite.service.impl.NoteServiceImpl;
 
+@Controller
 public class NoteControllerImpl implements INoteController {
 
 	// Logger
@@ -26,7 +28,7 @@ public class NoteControllerImpl implements INoteController {
 		
 		model.addAttribute("listNote", nS.selectAll());
 		log.info("Taille de la liste des Notes : " + nS.selectAll().size());
-		return "/listNote";
+		return "note/listNote";
 	}
 	
 	@Override
@@ -34,7 +36,7 @@ public class NoteControllerImpl implements INoteController {
 	public String getNote(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
 		model.addAttribute("not", nS.selectOn(id));
-		return "infoNote";
+		return "noteinfoNote";
 	}
 
 	@Override
@@ -50,15 +52,15 @@ public class NoteControllerImpl implements INoteController {
 	public String newNote(Model model) {
 		// TODO Auto-generated method stub
 		Note not = new Note();
-		model.addAttribute("not", not);
-		return "newNote";
+		model.addAttribute("note", not);
+		return "note/newNote";
 	}
 
 	@Override
 	@PostMapping(value = "/newNote")
-	public String newNote(Model model, Note not) {
+	public String newNote(Model model, Note note) {
 		// TODO Auto-generated method stub
-		nS.newNote(not);
+		nS.newNote(note);
 		return "redirect:/listNote";
 	}
 
@@ -66,8 +68,8 @@ public class NoteControllerImpl implements INoteController {
 	@GetMapping(value = "/editNote/{id}")
 	public String editNote(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
-		model.addAttribute("not", nS.selectOn(id));
-		return "newNote";
+		model.addAttribute("note", nS.selectOn(id));
+		return "note/newNote";
 	}
 	
 	@Override
@@ -75,7 +77,7 @@ public class NoteControllerImpl implements INoteController {
 	public String getListNoteTrierAsc(Model model) {
 		
 		model.addAttribute("listNote", nS.findAllByOrderByNote());
-		return "listNote";
+		return "note/listNote";
 	}
 	
 	@Override
@@ -83,6 +85,6 @@ public class NoteControllerImpl implements INoteController {
 	public String getListNoteTrierDesc(Model model) {
 		
 		model.addAttribute("listNote", nS.findAllByOrderByNoteDesc());
-		return "listNote";
+		return "note/listNote";
 	}
 }

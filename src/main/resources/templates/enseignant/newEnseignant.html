@@ -3,60 +3,55 @@
 <head>
 <meta charset="UTF-8" />
 <title>Ajout / Modification d'un enseignant</title>
+<link rel="stylesheet" th:href="@{/css/inc/header.css}"/>
 <link rel="stylesheet" th:href="@{/css/enseignant/newEnseignant.css}"/>
 </head>
 <body>
-	<h1>Ajout / Modification d'un enseignant</h1>
-	
-	<form th:action="@{/saveEnseignant}" method="POST" class="color" th:object="${ens}">
+
+	<header th:insert="inc/header.html"> </header>
+		
+	<form th:action="@{/saveEnseignant}" method="POST" class="color" th:object="${ens}" id="form">
 	    <fieldset>
-	        <legend>Enseignant</legend>
+	        <legend> Ajout / Modification d'un Enseignant</legend>
 	        
 	        <input type="hidden"  id="id" name="id" class="dim_block2" th:field="*{id}"/>
-	        <label>N° Enseignant :</label>
-	        <br/>
-	        <input type="text" id="numero_enseignant" name="numero_enseignant" class="dim_block2" th:field="*{numero_enseignant}"/>
-	        <br/>
-	        <br/>
 	        <label>Sexe :</label>
-	        <br>
-	        <input type="RADIO" name="sexe" value="M"  th:field="*{sexe}"/>Hommes<input type="RADIO" name="sexe" value="F"  th:field="*{sexe}"/>Femmes
+	        <div><input id="radio" type="RADIO" name="sexe" value="Mr" class="dim_block2" th:field="*{sexe}" th:text="Hommes"/><br/>
+	        <input id="radio" type="RADIO" name="sexe" value="Mme" class="dim_block2" th:field="*{sexe}" th:text="Femmes"/></div>
+	        <br/>
+	        <br/>
+	        <label>N° Enseignant :</label>
+	        <input type="number" id="numero_enseignant" value="" name="numero_enseignant" class="dim_block2" th:field="*{numero_enseignant}"/>
 	        <br/>
 	        <br/>
 	        <label>Nom :</label>
-	        <br/>
 	        <input type="text" id="nom" name="nom" class="dim_block2"  th:field="*{nom}"/>
 	        <br/>
 	        <br/>
 	        <label>Prénom :</label>
-	        <br/>
 	        <input type="text" id="prenom" name="prenom" class="dim_block2"  th:field="*{prenom}"/>
 	        <br/>
 	        <br/>
 	        <label>Date naissance :</label>
-	        <br/>
 	        <input type="date" id="date_naissance" name="date_naissance" class="dim_block2" th:field="*{date_naissance}"/>
 	        <br/>
 	        <br/>
 	        <label>Grade :</label>
-	        <br/>
 	        <input type="text" id="grade" name="grade" class="dim_block2" th:field="*{grade}"/>
 	        <br/>
 	        <br/>
 	        <label>Date d'embauche :</label>
-	        <br/>
 	        <input type="date" id="date_embauche" name="date_embauche" class="dim_block2" th:field="*{date_embauche}"/>
 	        <input type="hidden"  id="photo" name="photo" class="dim_block2" th:field="*{photo}"/>
 	        <br/>
 	        <br/>	
 	        <label>Matière :</label> 
-	        <br/>
-	        <select>
+	        <select class="dim_block2">
                    <option th:each="mat : ${listMatiere}" th:value="${mat.id}" th:utext="${mat.nom}"/>
             </select>          
 	    </fieldset>
     	<br/>
-	    <input type="submit" value="Envoyer" class="dim_block4" id="colorBlock"/>
+	    <input type="button" value="Envoyer" class="dim_block4" id="colorBlock" onClick="validerForm();"/>
 	    <input type="reset" value="Annuler" class="dim_block4" id="colorBlock"/>
 	    
 	</form>

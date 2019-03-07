@@ -1,1 +1,18 @@
-@charset "ISO-8859-1";
+h1{
+	text-align: center;
+	color: #55715c;
+	background-color :rgba(192,192,192,0.7);
+	width: 56%;
+	margin-left: 20%;
+	border-radius : 10px;
+}
+#conteneur{
+	width: 60%;
+	margin-left: 23%;
+	text-align: center;
+}
+
+.blockNote {
+	
+	boder: 1px solid black;
+}

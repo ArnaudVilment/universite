@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Liste des notes</title>
-<link rel="stylesheet" th:href="@{/css/listNote.css}"/>
+<link rel="stylesheet" th:href="@{/css/inc/header.css}"/>
+<link rel="stylesheet" th:href="@{/css/note/listNote.css}"/>
 </head>
 <body>
-	<h1>Liste des notes</h1>
+
+	<header th:insert="inc/header.html"> </header>
 	
-	<div id="conteneur" th:each="not : ${ listNote }">
+	<h1>Liste des notes</h1>
+
+	<div id="conteneur" th:each="note : ${ listNote }">
 		<div class="blockNote">
-			<a th:href="@{'/infoNote/' + ${not.id}}">Plus d'info</a>
+			<a th:href="@{'/infoNote/' + ${note.id}}">Plus d'info</a>
+			<p th:text="${ note.etudiant.sexe} + ' ' + ${ note.etudiant.nom} + ' ' + ${ note.etudiant.prenom}"></p>
+			<p th:text="'Note : ' + ${ note.note}"></p>
 		</div>
 	</div>
 	
