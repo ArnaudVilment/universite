@@ -40,6 +40,7 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	public String getEnseignant(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
 		model.addAttribute("ens", eS.selectOn(id));
+		model.addAttribute("listMatiere", mS.selectAll());
 		return "enseignant/infoEnseignant";
 	}
 

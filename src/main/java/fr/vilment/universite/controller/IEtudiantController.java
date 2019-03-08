@@ -15,4 +15,5 @@ public interface IEtudiantController {
 	public String editEtudiant(Model model, @PathVariable int id);
 	public String getListEtudiantTrierAsc(Model model);
 	public String getListEtudiantTrierDesc(Model model);
+	public String findEtudiantByNom(Model model, String nom);
 }

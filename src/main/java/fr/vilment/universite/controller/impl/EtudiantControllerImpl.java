@@ -1,5 +1,7 @@
 package fr.vilment.universite.controller.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,5 +87,22 @@ public class EtudiantControllerImpl implements IEtudiantController {
 		
 		model.addAttribute("listEtudiant", eS.findAllByOrderByNomDesc());
 		return "etudiant/listEtudiant";
+	}
+	
+	@Override
+	@PostMapping(value = "/cherchEtudiant")
+	public String findEtudiantByNom(Model model, String nom) {
+		// TODO Auto-generated method stub
+		List<Etudiant> lE = eS.findEtudiantByNom(nom);
+		
+		if(lE.size() == 1) {
+			Etudiant etu = lE.get(0);
+			model.addAttribute("etu", etu);
+			return "etudiant/infoEtudiant";
+		} else {
+			model.addAttribute("listEtudiant", lE);
+			return "etudiant/listEtudiant";
+		}
+		
 	}
 }

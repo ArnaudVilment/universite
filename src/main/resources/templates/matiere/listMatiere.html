@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <title>Liste des matieres</title>
+<link rel="stylesheet" th:href="@{/css/inc/header.css}"/>
 <link rel="stylesheet" th:href="@{/css/matiere/listMatiere.css}"/>
 </head>
 <body>
+
+	<header th:insert="inc/header.html"> </header>
+		
 	<h1>Liste des matieres</h1>
 	
 	<div id="conteneur" th:each="mat : ${ listMatiere }">

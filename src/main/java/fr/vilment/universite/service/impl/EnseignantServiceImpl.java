@@ -71,7 +71,7 @@ public class EnseignantServiceImpl implements IEnseignantService {
 		// http://bibliotheque.sciencespo-lyon.fr/wp-content/uploads/2018/10/des-enseignants-de-lecture_318-28655.jpg
 		for(Enseignant ens : lE) {
 			if(ens.getPhoto() == null || ens.getPhoto().equals("")) {
-				ens.setPhoto("http://bibliotheque.sciencespo-lyon.fr/wp-content/uploads/2018/10/des-enseignants-de-lecture_318-28655.jpg");
+				ens.setPhoto("/images/ens.jpg");
 			}
 			
 		}
@@ -82,7 +82,7 @@ public class EnseignantServiceImpl implements IEnseignantService {
 	public Enseignant checkPhoto(Enseignant ens) {
 		// TODO Auto-generated method stub
 		if(ens.getPhoto() == null || ens.getPhoto().equals("")) {
-			ens.setPhoto("http://bibliotheque.sciencespo-lyon.fr/wp-content/uploads/2018/10/des-enseignants-de-lecture_318-28655.jpg");
+			ens.setPhoto("/images/ens.jpg");
 		}
 		return ens;
 	}

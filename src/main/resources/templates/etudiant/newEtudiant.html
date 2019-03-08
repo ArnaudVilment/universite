@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <title>Ajout / Modification d'un etudiant</title>
+<link rel="stylesheet" th:href="@{/css/inc/header.css}"/>
 <link rel="stylesheet" th:href="@{/css/etudiant/newEtudiant.css}"/>
 </head>
 <body>
+
+	<header th:insert="inc/header.html"> </header>
+	
 	<h1>Ajout / Modification d'un etudiant</h1>
 	
 	<form th:action="@{/newEtudiant}" method="POST" class="color" th:object="${etu}">
@@ -13,15 +17,15 @@
 	        <legend>Etudiant</legend>
 	        
 	        <input type="hidden"  id="id" name="id" class="dim_block2" th:field="*{id}"/>
+	        <label>Sexe :</label>
+	        <br/>
+	        <input type="RADIO" name="sexe" value="Mr" th:field="*{sexe}"/>Hommes<input type="RADIO" name="sexe" value="Mme"  th:field="*{sexe}"/>Femmes
+	        <br/>
+	        <br/>
 	        <label>N° Etudiant :</label>
 	        <br/>
 	        <input type="text" id="numero_etudiant" name="numero_etudiant" class="dim_block2" th:field="*{numero_etudiant}"/>
 	        <br/>	        
-	        <br/>
-	        <label>Sexe :</label>
-	        <br/>
-	        <input type="RADIO" name="sexe" value="M" th:field="*{sexe}"/>Hommes<input type="RADIO" name="sexe" value="F"  th:field="*{sexe}"/>Femmes
-	        <br/>
 	        <br/>
 	        <label>Nom :</label>
 	        <br/>

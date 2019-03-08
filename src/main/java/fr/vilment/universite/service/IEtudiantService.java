@@ -14,4 +14,9 @@ public interface IEtudiantService {
 	public void editEtudiant(Etudiant etu);
 	public List<Etudiant> findAllByOrderByNom();
 	public List<Etudiant> findAllByOrderByNomDesc();
+	
+	public List<Etudiant> checkPhoto(List<Etudiant> lE);
+	public Etudiant checkPhoto(Etudiant lE);
+	
+	public List<Etudiant> findEtudiantByNom(String nom);
 }

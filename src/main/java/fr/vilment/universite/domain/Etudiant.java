@@ -1,6 +1,6 @@
 package fr.vilment.universite.domain;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -32,6 +32,8 @@ public class Etudiant {
 	private Date date_naissance;
 	@Column(name = "SEXE")
 	private String sexe;
+	@Column(name = "PHOTO")
+	private String photo;
 	
 	@OneToMany(mappedBy="etudiant")
 	private List<Note> listNote;
@@ -71,6 +73,12 @@ public class Etudiant {
 	}
 	public void setSexe(String sexe) {
 		this.sexe = sexe;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	public List<Note> getListNote() {
 		return listNote;

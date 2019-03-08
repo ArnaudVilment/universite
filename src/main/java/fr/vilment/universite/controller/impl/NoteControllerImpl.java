@@ -51,8 +51,8 @@ public class NoteControllerImpl implements INoteController {
 	@GetMapping(value = "/newNote")
 	public String newNote(Model model) {
 		// TODO Auto-generated method stub
-		Note not = new Note();
-		model.addAttribute("note", not);
+		Note note = new Note();
+		model.addAttribute("note", note);
 		return "note/newNote";
 	}
 

@@ -2,9 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8"/>
+<link rel="stylesheet" th:href="@{/css/inc/header.css}"/>
 <link rel="stylesheet" th:href="@{/css/etudiant/infoEtudiant.css}"/>
 </head>
 <body>
+
+	<header th:insert="inc/header.html"> </header>
+	
 	<h1>Information de l'étudiant</h1>
 	
 	<div id="conteneur">		
@@ -12,6 +16,9 @@
 				<p th:text="${ etu.nom }"></p>
 				<p th:text="${ etu.prenom }"></p>
 				<p th:text="${ etu.sexe }"></p>				
+		</div>
+		<div id="photo">				
+				<img id="imgUti" th:src="@{ ${ etu.photo }}"/>	
 		</div>
 		<div id="modif">
 			<ul>

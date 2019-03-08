@@ -41,6 +41,14 @@ body{
 
 }
 
+#matiere {
+	border: 1px solid;
+	width: 150px;
+	margin-left: 140px;
+	margin-top: -150px;
+	
+}
+
 h1{
 	text-align: center;
 	color: #55715c;
