@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import fr.vilment.universite.domain.Matiere;
+
 @Entity
 @Table(name = "T_ENSEIGNANT")
 public class Enseignant {

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import fr.vilment.universite.controller.IEtudiantController;
 import fr.vilment.universite.domain.Etudiant;
 import fr.vilment.universite.service.impl.EtudiantServiceImpl;
+import fr.vilment.universite.service.impl.MatiereServiceImpl;
 
 @Controller
 public class EtudiantControllerImpl implements IEtudiantController {
@@ -23,6 +24,8 @@ public class EtudiantControllerImpl implements IEtudiantController {
 		
 	@Autowired
 	private EtudiantServiceImpl eS;
+	@Autowired
+	private MatiereServiceImpl mS;
 	
 	@Override
 	@GetMapping(path="/listEtudiant")
@@ -36,7 +39,11 @@ public class EtudiantControllerImpl implements IEtudiantController {
 	@GetMapping(value = "/infoEtudiant/{id}")
 	public String getEtudiant(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
-		model.addAttribute("etu", eS.selectOn(id));
+		Etudiant etu = eS.selectOn(id);
+		model.addAttribute("etu", etu);
+		
+		//for("etu" : )
+		///model.addAttribute("mat", mS.selectAllMatiereByIdMat(etu.getListNote().get));
 		return "etudiant/infoEtudiant";
 	}
 

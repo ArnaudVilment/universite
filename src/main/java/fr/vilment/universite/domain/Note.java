@@ -12,31 +12,41 @@ import javax.persistence.Table;
 public class Note {
 
 	@EmbeddedId
-    private NoteId id;
+    private NotePK notePK;
 	
 	@Column(name = "NOTE")
-	private int note;
+	private Double note;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_ETUDIANT", insertable=false, updatable=false)
 	private Etudiant etudiant;
 	
-	public int getNote() {
+	@ManyToOne
+	@JoinColumn(name = "ID_MATIERE", insertable=false, updatable=false)
+	private Matiere matiere;
+	
+	public NotePK getNotePK() {
+		return notePK;
+	}
+	public void setNotePK(NotePK notePK) {
+		this.notePK = notePK;
+	}
+	public Double getNote() {
 		return note;
 	}
-	public void setNote(int note) {
+	public void setNote(Double note) {
 		this.note = note;
-	}
-	public NoteId getId() {
-		return id;
-	}
-	public void setId(NoteId id) {
-		this.id = id;
 	}
 	public Etudiant getEtudiant() {
 		return etudiant;
 	}
 	public void setEtudiant(Etudiant etudiant) {
 		this.etudiant = etudiant;
+	}
+	public Matiere getMatiere() {
+		return matiere;
+	}
+	public void setMatiere(Matiere matiere) {
+		this.matiere = matiere;
 	}
 }

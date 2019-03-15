@@ -9,12 +9,10 @@
 <body>
 
 	<header th:insert="inc/header.html"> </header>
-	
-	<h1>Ajout / Modification d'un etudiant</h1>
-	
+		
 	<form th:action="@{/newEtudiant}" method="POST" class="color" th:object="${etu}">
 	    <fieldset>
-	        <legend>Etudiant</legend>
+	        <legend>Ajout / Modification d'un etudiant</legend>
 	        
 	        <input type="hidden"  id="id" name="id" class="dim_block2" th:field="*{id}"/>
 	        <label>Sexe :</label>

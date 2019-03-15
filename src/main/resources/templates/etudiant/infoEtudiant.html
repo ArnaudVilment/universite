@@ -26,6 +26,13 @@
 				<li><a th:href="@{'../delEtudiant/' + ${ etu.id }}"><img class="icon" th:src="@{/images/icone_sup.jpg}"/></a></li>
 			</ul>				
 		</div>	
+		
+		<div id="note">
+			<ul th:each="etu : ${ etu.listNote }">
+				<li th:text="${ etu.note }"></li>
+			</ul>
+		</div>
+		
 		<div id="infos">	
 				<p th:text="${ etu.date_naissance }"></p>							
 				<br/><br/><br/><br/><br/>

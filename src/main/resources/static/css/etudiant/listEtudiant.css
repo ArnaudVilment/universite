@@ -27,9 +27,9 @@ p {
 	width: 270px;
 	background-color: rgba(192,192,192,0.7);
 }
-#photo {
-	height: 200px;
-	margin-left: -60px;
+img {
+	height: 220px;
+	margin-left: -90px;
 }
 
 .icon {

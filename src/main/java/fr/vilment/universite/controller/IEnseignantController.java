@@ -1,10 +1,6 @@
 package fr.vilment.universite.controller;
 
-import java.util.List;
-
-import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import fr.vilment.universite.domain.Enseignant;

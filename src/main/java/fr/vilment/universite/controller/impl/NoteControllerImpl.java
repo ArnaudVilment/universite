@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.vilment.universite.controller.INoteController;
 import fr.vilment.universite.domain.Note;
+import fr.vilment.universite.domain.NotePK;
+import fr.vilment.universite.service.impl.EtudiantServiceImpl;
+import fr.vilment.universite.service.impl.MatiereServiceImpl;
 import fr.vilment.universite.service.impl.NoteServiceImpl;
 
 @Controller
@@ -21,6 +24,10 @@ public class NoteControllerImpl implements INoteController {
 	
 	@Autowired
 	private NoteServiceImpl nS;
+	@Autowired
+	private MatiereServiceImpl mS;
+	@Autowired
+	private EtudiantServiceImpl eS;
 		
 	@Override
 	@GetMapping(path="/listNote")
@@ -33,17 +40,23 @@ public class NoteControllerImpl implements INoteController {
 	
 	@Override
 	@GetMapping(value = "/infoNote/{id}")
-	public String getNote(Model model, @PathVariable int id) {
+	public String getNote(Model model, @PathVariable NotePK notePK) {
 		// TODO Auto-generated method stub
-		model.addAttribute("not", nS.selectOn(id));
+		//model.addAttribute("not", nS.findtOn(notePK));
 		return "noteinfoNote";
 	}
 
 	@Override
-	@GetMapping(value = "/delNote/{id}")
-	public String delNote(Model model, @PathVariable int id) {
+	@GetMapping(value = "/delNote/{id_etudiant}/{id_matiere}")
+	public String delNote(Model model, @PathVariable int id_etudiant, @PathVariable int id_matiere) {
 		// TODO Auto-generated method stub
-		nS.deleteOne(id);
+		Note note = nS.findOn(id_etudiant, id_matiere);
+		NotePK npk = new NotePK();
+		npk.setId_etudiant(id_etudiant);
+		npk.setId_matiere(id_matiere);
+		note.setNotePK(npk);
+
+		nS.deleteOne(note);
 		return "redirect:/listNote";
 	}
 	
@@ -53,6 +66,8 @@ public class NoteControllerImpl implements INoteController {
 		// TODO Auto-generated method stub
 		Note note = new Note();
 		model.addAttribute("note", note);
+		model.addAttribute("listMatiere", mS.selectAll());
+		model.addAttribute("listEtudiant", eS.selectAll());
 		return "note/newNote";
 	}
 
@@ -60,16 +75,34 @@ public class NoteControllerImpl implements INoteController {
 	@PostMapping(value = "/newNote")
 	public String newNote(Model model, Note note) {
 		// TODO Auto-generated method stub
+		NotePK npk = new NotePK();
+		npk.setId_etudiant(note.getEtudiant().getId());
+		npk.setId_matiere(note.getMatiere().getId());
+		note.setNotePK(npk);
 		nS.newNote(note);
 		return "redirect:/listNote";
 	}
-
+	
 	@Override
-	@GetMapping(value = "/editNote/{id}")
-	public String editNote(Model model, @PathVariable int id) {
+	@GetMapping(value = "/editNote/{id_etudiant}/{id_matiere}")
+	public String editNote(Model model, @PathVariable int id_etudiant, @PathVariable int id_matiere) {
 		// TODO Auto-generated method stub
-		model.addAttribute("note", nS.selectOn(id));
-		return "note/newNote";
+		model.addAttribute("note", nS.findOn(id_etudiant, id_matiere));
+		model.addAttribute("mat", mS.selectOn(id_matiere));
+		model.addAttribute("etu", eS.selectOn(id_etudiant));
+		return "note/editNote";
+	}
+	
+	@Override
+	@PostMapping(value = "/editNote")
+	public String editNote(Model model, Note note, int id_etudiant, int id_matiere) {
+		// TODO Auto-generated method stub
+		NotePK npk = new NotePK();
+		npk.setId_etudiant(id_etudiant);
+		npk.setId_matiere(id_matiere);
+		note.setNotePK(npk);
+		nS.newNote(note);
+		return "redirect:/listNote";
 	}
 	
 	@Override
@@ -87,4 +120,6 @@ public class NoteControllerImpl implements INoteController {
 		model.addAttribute("listNote", nS.findAllByOrderByNoteDesc());
 		return "note/listNote";
 	}
+	
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.vilment.universite.domain.Etudiant;
 import fr.vilment.universite.domain.Matiere;
 import fr.vilment.universite.repository.IMatiereRepository;
 import fr.vilment.universite.service.IMatiereService;
@@ -19,6 +20,18 @@ public class MatiereServiceImpl implements IMatiereService {
 	public List<Matiere> selectAll() {
 		// TODO Auto-generated method stub
 		return mR.findAll();
+	}
+	
+	@Override
+	public List<Matiere> selectAllMatiereNonEns(int idEns) {
+		// TODO Auto-generated method stub
+		return mR.findAllNonEns(idEns);
+	}
+	
+	@Override
+	public List<Matiere> selectAllMatiereByIdMat(int idMat) {
+		// TODO Auto-generated method stub
+		return mR.findAllByIdMatiere(idMat);
 	}
 
 	@Override
@@ -57,4 +70,10 @@ public class MatiereServiceImpl implements IMatiereService {
 		return mR.findAllByOrderByNomDesc();
 	}
 
+	@Override
+	public List<Matiere> findMatiereByNom(String nom) {
+		// TODO Auto-generated method stub
+		List<Matiere> lm = mR.findMatiereByNom(nom);
+		return lm;
+	}
 }

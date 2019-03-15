@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.vilment.universite.domain.Note;
+import fr.vilment.universite.domain.NotePK;
 import fr.vilment.universite.repository.INoteRepository;
 import fr.vilment.universite.service.INoteService;
 
@@ -22,21 +23,27 @@ public class NoteServiceImpl implements INoteService {
 	}
 
 	@Override
-	public Note selectOn(int id) {
+	public Note findOn(int id_etudiant, int id_matiere) {
 		// TODO Auto-generated method stub
-		return nR.getOne(id);
+		NotePK npk = new NotePK();
+		npk.setId_etudiant(id_etudiant);
+		npk.setId_matiere(id_matiere);
+		
+		Note note = nR.getOne(npk);
+		return note;
 	}
 
 	@Override
-	public void deleteOne(int id) {
+	public void deleteOne(Note note) {
 		// TODO Auto-generated method stub
-		nR.deleteById(id);
+		nR.delete(note);
 	}
 
 	@Override
-	public void newNote(Note not) {
+	public Note newNote(Note note) {
 		// TODO Auto-generated method stub
-		nR.save(not);
+		nR.save(note);
+		return note;
 	}
 
 	@Override
@@ -56,5 +63,4 @@ public class NoteServiceImpl implements INoteService {
 		// TODO Auto-generated method stub
 		return nR.findAllByOrderByNoteDesc();
 	}
-
 }

@@ -6,26 +6,17 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class NoteId implements Serializable {
+public class NotePK implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Column(name = "ID_ETUDIANT")
     private int id_etudiant;
 	@Column(name = "ID_MATIERE")
     private int id_matiere;
- 
-	public NoteId() {
-		
-	}
-
-	public NoteId(int id_etudiant, int id_matiere) {
-		super();
-		this.id_etudiant = id_etudiant;
-		this.id_matiere = id_matiere;
-	}
 
 	public int getId_etudiant() {
 		return id_etudiant;

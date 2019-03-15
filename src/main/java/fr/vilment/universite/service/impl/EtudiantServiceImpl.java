@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.vilment.universite.domain.Enseignant;
 import fr.vilment.universite.domain.Etudiant;
 import fr.vilment.universite.repository.IEtudiantRepository;
 import fr.vilment.universite.service.IEtudiantService;

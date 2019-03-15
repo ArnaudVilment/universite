@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import fr.vilment.universite.domain.Enseignant;
 import fr.vilment.universite.domain.Etudiant;
 
 @Repository

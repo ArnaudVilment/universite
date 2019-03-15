@@ -69,6 +69,7 @@ public class EnseignantControllerImpl implements IEnseignantController {
 		log.info("Nom enseignant : {}" , ens.getNom());
 		log.info("Prenom enseignant : {}" , ens.getPrenom());
 		Enseignant e = eS.newEnseignant(ens);
+		//Matiere m = ens.get
 		if(e == null) {
 			return "redirect:/newEnseignant";
 		} else {
@@ -80,8 +81,10 @@ public class EnseignantControllerImpl implements IEnseignantController {
 	@GetMapping(value = "/editEnseignant/{id}")
 	public String editEnseignant(Model model, @PathVariable int id) {
 		// TODO Auto-generated method stub
-		model.addAttribute("ens", eS.selectOn(id));
-		model.addAttribute("listMatiere", eS.selectOn(id).getListMatiere());
+		Enseignant ens = eS.selectOn(id);
+		model.addAttribute("ens", ens);
+		model.addAttribute("listMatiere", mS.selectAllMatiereNonEns(ens.getId()));
+		model.addAttribute("listMatiereEns", eS.selectOn(id).getListMatiere());
 		return "enseignant/newEnseignant";
 	}
 	
